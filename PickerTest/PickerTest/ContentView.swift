@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    let initstrings : [String] = ["Turntable", "Main DAC", "EVO", "CD Player"]
+    
+    /* Fetch the current names used to populate the picker. */
+    @EnvironmentObject var pickerNames : Names
+    
+    //let initstrings : [String] = ["Turntable", "Main DAC", "EVO", "CD Player"]
+    
     var body: some View {
         VStack {
-            PickerView(instr: initstrings)
+            PickerView(instr: pickerNames.names)
+     //       PickerView(instr: initstrings)
         }
         .padding()
     }

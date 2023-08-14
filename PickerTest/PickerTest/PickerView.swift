@@ -26,8 +26,21 @@ struct PickerView: View {
         strings = instr
     }
     
+    /*
+     * Initializer which uses defaults.
+     */
+    init() { }
+    
     var body: some View {
-        Text("Selected: \(selection) = \(strings[selection])")
+        /* If the array is empty, that is, the user cleared it in preferences
+         * after the program has started, selection will point to nothing and
+         * the program will crash. So test for this case and don't show the text
+         * box until there is something to display.
+         */
+        if !strings.isEmpty && (selection < strings.count) {
+            Text("Selected: \(selection)")
+            Text(" = \(strings[selection])")
+        }
         
         Picker("Input:", selection: $selection) {
             /* We want to return the index of the selected entry in the

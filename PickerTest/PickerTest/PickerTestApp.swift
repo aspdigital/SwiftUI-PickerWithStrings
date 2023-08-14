@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct PickerTestApp: App {
+    
+    @StateObject var names = Names()
+    
     var body: some Scene {
-        WindowGroup {
+        Window("Picker Test App", id: "main") {
             ContentView()
+                .environmentObject(names)
+        }
+        Settings {
+            PreferencesView()
+                .environmentObject(names)
         }
     }
 }
