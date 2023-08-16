@@ -11,7 +11,7 @@ struct PreferencesView: View {
 
     var body: some View {
         TabView {
-            NameSetupPreferencesView()
+            NameSetupPreferencesView(selection: Selection(sel: 0))
         }
         .frame(width: 400, height: 250)
     }

@@ -15,7 +15,7 @@ import SwiftUI
  */
 struct PickerView: View {
     
-    @State private var selection : Int = 0
+    @ObservedObject var selection = Selection(sel: 0)
        
     private var strings : [String] = ["Input 1", "Input 2", "Input 3", "Input 4"]
     
@@ -37,12 +37,12 @@ struct PickerView: View {
          * the program will crash. So test for this case and don't show the text
          * box until there is something to display.
          */
-        if !strings.isEmpty && (selection < strings.count) {
-            Text("Selected: \(selection)")
-            Text(" = \(strings[selection])")
+        if !strings.isEmpty && (selection.selection < strings.count) {
+            Text("Selected: \(selection.selection)")
+            Text(" = \(strings[selection.selection])")
         }
         
-        Picker("Input:", selection: $selection) {
+        Picker("Input:", selection: $selection.selection) {
             /* We want to return the index of the selected entry in the
              * picker list. But we want to show the string that corresponds
              * to that selection. */

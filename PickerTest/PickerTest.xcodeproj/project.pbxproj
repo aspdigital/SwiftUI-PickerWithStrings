@@ -12,6 +12,7 @@
 		A1150A442A86E6CA00BB0224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1150A432A86E6CA00BB0224 /* Assets.xcassets */; };
 		A1150A472A86E6CA00BB0224 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1150A462A86E6CA00BB0224 /* Preview Assets.xcassets */; };
 		A1150A4F2A86E91D00BB0224 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1150A4E2A86E91D00BB0224 /* PickerView.swift */; };
+		A170BEA92A89DE0A00B0ACB6 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A170BEA82A89DE0A00B0ACB6 /* Selection.swift */; };
 		A18D5B082A88120800DC849C /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D5B072A88120800DC849C /* PreferencesView.swift */; };
 		A18D5B0A2A88175C00DC849C /* SerialSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D5B092A88175C00DC849C /* SerialSettingsView.swift */; };
 		A18D5B0C2A88186100DC849C /* NameSetupPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D5B0B2A88186100DC849C /* NameSetupPreferencesView.swift */; };
@@ -26,6 +27,7 @@
 		A1150A462A86E6CA00BB0224 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A1150A482A86E6CA00BB0224 /* PickerTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PickerTest.entitlements; sourceTree = "<group>"; };
 		A1150A4E2A86E91D00BB0224 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		A170BEA82A89DE0A00B0ACB6 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		A18D5B072A88120800DC849C /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		A18D5B092A88175C00DC849C /* SerialSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialSettingsView.swift; sourceTree = "<group>"; };
 		A18D5B0B2A88186100DC849C /* NameSetupPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSetupPreferencesView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				A1150A412A86E6C800BB0224 /* ContentView.swift */,
 				A1150A4E2A86E91D00BB0224 /* PickerView.swift */,
 				A18D5B0D2A882C0000DC849C /* Names.swift */,
+				A170BEA82A89DE0A00B0ACB6 /* Selection.swift */,
 				A1150A432A86E6CA00BB0224 /* Assets.xcassets */,
 				A1150A482A86E6CA00BB0224 /* PickerTest.entitlements */,
 				A1150A452A86E6CA00BB0224 /* Preview Content */,
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A170BEA92A89DE0A00B0ACB6 /* Selection.swift in Sources */,
 				A1150A422A86E6C800BB0224 /* ContentView.swift in Sources */,
 				A18D5B0C2A88186100DC849C /* NameSetupPreferencesView.swift in Sources */,
 				A18D5B0E2A882C0000DC849C /* Names.swift in Sources */,

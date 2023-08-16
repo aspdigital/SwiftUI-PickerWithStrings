@@ -25,8 +25,8 @@ struct NameSetupPreferencesView: View {
     /* Names is fetched from defaults storage at startup */
     @EnvironmentObject var names : Names
     
-    /* Selection is the active (selected) index of the picker*/
-    @State private var selection : Int = 0
+    /* Selection is the active (selected) index of the picker. */
+    @ObservedObject var selection : Selection
     
     /* Populate the text field */
     @State private var textFieldContents : String = ""
@@ -36,7 +36,7 @@ struct NameSetupPreferencesView: View {
             HStack {
                 TextField("Enter a name", text: $textFieldContents)
                     .help("This is the string you want to add to the picker")
-                Text("Index = \(selection)")
+                Text("Index = \(selection.selection)")
             }
             .frame(width: 220, height: 20)
             HStack {
@@ -52,12 +52,12 @@ struct NameSetupPreferencesView: View {
                     .help("Clear the picker entirely")
             }
             HStack {
-                Picker("picker", selection: $selection) {
+                Picker("picker", selection: $selection.selection) {
                     ForEach((0..<names.names.count), id: \.self) { i in
                         Text(names.names[i])
                     }
                     .id(names.names)
-                    .onChange(of: selection) { tag in
+                    .onChange(of: selection.selection) { tag in
                         /* Handle the case where we've cleared the array here
                          * with our "Clear All" button. When that happens
                          * assigning textFieldContents from the array crashes
@@ -65,7 +65,7 @@ struct NameSetupPreferencesView: View {
                         if names.names.isEmpty {
                             textFieldContents = ""
                         } else {
-                            textFieldContents = names.names[selection]
+                            textFieldContents = names.names[selection.selection]
                         }
                     }
                 }
@@ -81,10 +81,10 @@ struct NameSetupPreferencesView: View {
         print("Current selector = \(selection)")
         if names.names.count == 0 {
             names.names.append(textFieldContents)
-            print("We just added \(names.names[selection]) at \(selection)")
+            print("We just added \(names.names[selection.selection]) at \(selection.selection)")
         } else {
-            names.names[selection] = textFieldContents
-            print("We just renamed \(names.names[selection]) at \(selection)")
+            names.names[selection.selection] = textFieldContents
+            print("We just renamed \(names.names[selection.selection]) at \(selection.selection)")
         }
         print("After update, number of entries in our picker array: \(names.names.count)")
     }
@@ -99,14 +99,14 @@ struct NameSetupPreferencesView: View {
         print("Current selection: \(selection)")
         if names.names.count == 0 {
             names.names.append(textFieldContents)
-            print("We just added \(names.names[selection]) at \(selection)")
+            print("We just added \(names.names[selection.selection]) at \(selection.selection)")
         } else {
-            names.names.insert(textFieldContents, at: selection)
-            print("We just inserted \(names.names[selection]) at \(selection)")
+            names.names.insert(textFieldContents, at: selection.selection)
+            print("We just inserted \(names.names[selection.selection]) at \(selection.selection)")
         }
         print("After insert, number of entries in our picker array: \(names.names.count)")
         /* Update the text field to show what's at the current selection */
-        textFieldContents = names.names[selection]
+        textFieldContents = names.names[selection.selection]
     }
     
     func addAfterIntoPicker () {
@@ -118,10 +118,10 @@ struct NameSetupPreferencesView: View {
         if names.names.count == 0 {
             names.names.append(textFieldContents)
         } else {
-            selection += 1
-            names.names.insert(textFieldContents, at: selection)
+            selection.selection += 1
+            names.names.insert(textFieldContents, at: selection.selection)
         }
-        print("Inserted \(textFieldContents) at \(selection)")
+        print("Inserted \(textFieldContents) at \(selection.selection)")
     }
     
     func deleteFromPicker() {
@@ -140,22 +140,22 @@ struct NameSetupPreferencesView: View {
             /* here, selection must be 0, as it's the only possible option for a
              * one-entry array */
             textFieldContents = ""
-            names.names.remove(at: selection)
-            print("After removal, picker is empty. selection = \(selection), textFieldContents = \(textFieldContents), array = \(names.names)")
+            names.names.remove(at: selection.selection)
+            print("After removal, picker is empty. selection = \(selection.selection), textFieldContents = \(textFieldContents), array = \(names.names)")
         } else {
             /* will we delete the entry at the end of the picker?
              * if so, we want to set the selector to the entry before that one, and
              * also fill the text box with the contents of that new selector. */
-            if selection == names.names.count - 1 {
-                selection -= 1
-                textFieldContents = names.names[selection]
+            if selection.selection == names.names.count - 1 {
+                selection.selection -= 1
+                textFieldContents = names.names[selection.selection]
                 names.names.remove(at: names.names.count - 1)
-                print("we deleted entry at end of list, so\n\tselection = \(selection)\n\tcount = \(names.names.count)\n\ttextfield = \(textFieldContents)\n\tarray = \(names.names)")
+                print("we deleted entry at end of list, so\n\tselection = \(selection.selection)\n\tcount = \(names.names.count)\n\ttextfield = \(textFieldContents)\n\tarray = \(names.names)")
             } else {
                 /* we're somewhere in the midddle of the array, so we can remove the
                  * currently selected item without trouble. The selector remains the same
                  * so the text field and picker will auto update properly. */
-                names.names.remove(at: selection)
+                names.names.remove(at: selection.selection)
             }
         }
     }
@@ -168,13 +168,13 @@ struct NameSetupPreferencesView: View {
             /* clear the text edit field and reset the index, so the user is
              * not confused. */
             textFieldContents = ""
-            selection = 0
+            selection.selection = 0
         }
     }
 }
 
 struct NameSetupPreferences_Previews: PreviewProvider {
     static var previews: some View {
-        NameSetupPreferencesView()
+        NameSetupPreferencesView(selection: Selection(sel: 0))
     }
 }
