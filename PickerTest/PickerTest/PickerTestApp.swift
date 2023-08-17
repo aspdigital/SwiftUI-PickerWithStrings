@@ -14,7 +14,7 @@ struct PickerTestApp: App {
     
     var body: some Scene {
         Window("Picker Test App", id: "main") {
-            ContentView()
+            ContentView(sel: Selection(sel: 0))
                 .environmentObject(names)
         }
         Settings {

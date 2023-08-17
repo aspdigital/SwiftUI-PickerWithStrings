@@ -15,21 +15,24 @@ import SwiftUI
  */
 struct PickerView: View {
     
-    @ObservedObject var selection = Selection(sel: 0)
+    @ObservedObject var selection : Selection
        
     private var strings : [String] = ["Input 1", "Input 2", "Input 3", "Input 4"]
     
     /*
      * This initializer accepts an array of strings and overwrites the defaults.
      */
-    init(instr : [String]) {
+    init(instr : [String], sel: Selection) {
         strings = instr
+        selection = sel
     }
     
     /*
      * Initializer which uses defaults.
      */
-    init() { }
+    init() {
+        selection = Selection(sel: 0)
+    }
     
     var body: some View {
         /* If the array is empty, that is, the user cleared it in preferences
@@ -55,6 +58,9 @@ struct PickerView: View {
 
 struct PickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerView(instr: ["1", "2", "3", "4"])
+        PickerView(
+            instr: ["1", "2", "3", "4"],
+            sel: Selection(sel: 0)
+        )
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PreferencesView: View {
+    
+    @EnvironmentObject var names : Names
 
     var body: some View {
         TabView {
