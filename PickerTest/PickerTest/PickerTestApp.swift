@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct PickerTestApp: App {
     
-    @StateObject var names = Names()
+    @StateObject var names = Names(key: "PickerListNames")
     
     var body: some Scene {
         Window("Picker Test App", id: "main") {

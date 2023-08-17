@@ -12,17 +12,21 @@
 import Foundation
 
 class Names : ObservableObject {
+    
+    var key : String
+    
     @Published var names = [String]() {
         didSet {
             if let encoded = try? JSONEncoder().encode(names) {
-                UserDefaults.standard.set(encoded, forKey: "PickerListNames")
+                UserDefaults.standard.set(encoded, forKey: "key")
                 print("Names updated in storage, now: \(names)")
             }
         }
     }
     
-    init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "PickerListNames") {
+    init(key: String) {
+        self.key = key
+        if let savedItems = UserDefaults.standard.data(forKey: "key") {
             print("In Names init")
             if let decodedItems = try? JSONDecoder().decode([String].self, from: savedItems) {
                 names = decodedItems
